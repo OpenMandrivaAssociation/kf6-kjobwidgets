@@ -1,6 +1,6 @@
 %define libname %mklibname KF6JobWidgets
 %define devname %mklibname KF6JobWidgets -d
-%define git 20230802
+%define git 20230811
 
 Name: kf6-kjobwidgets
 Version: 5.240.0
