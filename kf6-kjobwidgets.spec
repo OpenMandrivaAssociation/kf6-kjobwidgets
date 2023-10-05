@@ -1,6 +1,6 @@
 %define libname %mklibname KF6JobWidgets
 %define devname %mklibname KF6JobWidgets -d
-%define git 20230927
+%define git 20231005
 
 Name: kf6-kjobwidgets
 Version: 5.240.0
@@ -75,7 +75,6 @@ Widgets for showing progress of asynchronous jobs
 %files -n %{devname}
 %{_includedir}/KF6/KJobWidgets
 %{_libdir}/cmake/KF6JobWidgets
-%{_qtdir}/mkspecs/modules/qt_KJobWidgets.pri
 %{_qtdir}/doc/KF6JobWidgets.*
 
 %files -n %{libname}
