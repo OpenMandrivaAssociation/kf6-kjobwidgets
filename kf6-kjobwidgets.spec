@@ -6,7 +6,7 @@
 #define git 20240217
 
 Name: kf6-kjobwidgets
-Version: 6.13.0
+Version: 6.14.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kjobwidgets/-/archive/master/kjobwidgets-master.tar.bz2#/kjobwidgets-%{git}.tar.bz2
@@ -20,6 +20,7 @@ Group: System/Libraries
 BuildRequires: cmake
 BuildRequires: cmake(ECM)
 BuildRequires: python
+BuildRequires: cmake(PySide6)
 BuildRequires: cmake(Qt6DBusTools)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Network)
@@ -37,6 +38,10 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6Notifications)
 Requires: %{libname} = %{EVRD}
+
+BuildSystem: cmake
+BuildOption: -DBUILD_QCH:BOOL=ON
+BuildOption: -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 
 %description
 Widgets for showing progress of asynchronous jobs
@@ -59,21 +64,13 @@ Development files (Headers etc.) for %{name}.
 
 Widgets for showing progress of asynchronous jobs
 
-%prep
-%autosetup -p1 -n kjobwidgets-%{?git:master}%{!?git:%{version}}
-%cmake \
-	-DBUILD_QCH:BOOL=ON \
-	-DBUILD_WITH_QT6:BOOL=ON \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
+%package -n python-kjobwidgets
+Summary: Python bindings for KJobWidgets
+Group: Development/Python
+Requires: %{libname} = %{EVRD}
 
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
-
-%find_lang %{name} --all-name --with-qt --with-html
+%description -n python-kjobwidgets
+Python bindings for KJobWidgets
 
 %files -f %{name}.lang
 %{_datadir}/qlogging-categories6/kjobwidgets.*
@@ -86,3 +83,6 @@ Widgets for showing progress of asynchronous jobs
 
 %files -n %{libname}
 %{_libdir}/libKF6JobWidgets.so*
+
+%files -n python-kjobwidgets
+%{py_platlibdir}/site-packages/KJobWidgets.*.so
