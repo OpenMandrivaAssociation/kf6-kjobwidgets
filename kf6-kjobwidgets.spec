@@ -6,7 +6,7 @@
 #define git 20240217
 
 Name: kf6-kjobwidgets
-Version: 6.14.0
+Version: 6.15.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kjobwidgets/-/archive/master/kjobwidgets-master.tar.bz2#/kjobwidgets-%{git}.tar.bz2
@@ -37,6 +37,7 @@ BuildRequires: cmake(Qt6QuickTest)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6Notifications)
+BuildRequires: python-kcoreaddons
 Requires: %{libname} = %{EVRD}
 
 BuildSystem: cmake
@@ -79,7 +80,6 @@ Python bindings for KJobWidgets
 %files -n %{devname}
 %{_includedir}/KF6/KJobWidgets
 %{_libdir}/cmake/KF6JobWidgets
-%{_qtdir}/doc/KF6JobWidgets.*
 
 %files -n %{libname}
 %{_libdir}/libKF6JobWidgets.so*
