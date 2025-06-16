@@ -38,6 +38,7 @@ BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6WidgetsAddons)
 BuildRequires: cmake(KF6Notifications)
 BuildRequires: python-kcoreaddons
+BuildRequires: pkgconfig(python3)
 Requires: %{libname} = %{EVRD}
 
 BuildSystem: cmake
